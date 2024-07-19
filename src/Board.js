@@ -28,15 +28,20 @@ import "./Board.css";
 function Board({ nrows, ncols, chanceLightStartsOn }) {
   const [board, setBoard] = useState(createBoard());
 
-  /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
+  /** create a board 'nrows' high and 'ncols' wide, with each cell randomly lit/unlit */
   function createBoard() {
-    let initialBoard = [];
-    // TODO: create array-of-arrays of true/false values
+
+    // create array-of-arrays of true/false values (with 50/50 odds)
+    let initialBoard = Array.from({ length: nrows }, () => 
+      Array.from({ length: ncols }, () => Math.random() < 0.5)
+    );
+
     return initialBoard;
   }
 
-  function hasWon() {
-    // TODO: check the board in state to determine whether the player has won.
+  function hasWon(board) {
+    // check the board in state to determine whether the player has won.
+    return board.every((row) => row.every(!Cell.isLit));
   }
 
   function flipCellsAround(coord) {
