@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Cell from "./Cell";
+import Cell from "../Cell";
 
 it("renders Cell without crashing", function() {
   render(<Cell />);
